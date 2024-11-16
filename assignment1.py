@@ -40,7 +40,21 @@ def leap_year(year: int) -> bool:
 
 def mon_max(month:int, year:int) -> int:
     "returns the maximum day for a given month. Includes leap year check"
-    ...
+   
+    """
+    Returns the maximum number of days in a given month and year.
+    :param month: Month as an integer (1-12).
+    :param year: Year as an integer.
+    :return: Maximum number of days in the month.
+    """
+    if month in [1, 3, 5, 7, 8, 10, 12]:
+        return 31
+    elif month in [4, 6, 9, 11]:
+        return 30
+    elif month == 2:
+        return 29 if leap_year(year) else 28
+    else:
+        raise ValueError("Invalid month value. Month should be between 1 and 12.")
 
 def after(date: str) -> str: 
     '''
@@ -105,6 +119,7 @@ if __name__ == "__main__":
     # call day_iter function to get end date, save to x
     # print(f'The end date is {day_of_week(x)}, {x}.')
     pass
+
 
 
 
