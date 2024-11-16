@@ -127,7 +127,29 @@ def usage():
 
 def valid_date(date: str) -> bool:
     "check validity of date"
-    ...
+    
+    """
+    Checks if a given date string is valid.
+    :param date: A string in DD/MM/YYYY format.
+    :return: True if the date is valid, False otherwise.
+    """
+    try:
+        day, month, year = map(int, date.split('/'))
+
+        if month < 1 or month > 12:
+            return False
+
+        if day < 1 or day > mon_max(month, year):
+            return False
+
+        if year < 0:
+            return False
+
+        return True
+    except (ValueError, AttributeError):
+  
+        return False
+
 
 def day_iter(start_date: str, num: int) -> str:
     "iterates from start date by num to return end date in DD/MM/YYYY"
