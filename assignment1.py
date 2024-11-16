@@ -97,7 +97,28 @@ def after(date: str) -> str:
 
 def before(date: str) -> str:
     "Returns previous day's date as DD/MM/YYYY"
-    ...
+    
+    """
+    Returns the previous day's date as DD/MM/YYYY.
+    :param date: A string in DD/MM/YYYY format.
+    :return: A string representing the previous day's date in the same format.
+    """
+    day, month, year = map(int, date.split('/'))
+
+    # Decrement the day
+    day -= 1
+
+    # Handle month transitions
+    if day == 0:
+        month -= 1  # Move to the previous month
+        if month == 0:  # Handle year transition
+            month = 12
+            year -= 1
+        day = mon_max(month, year)  # Get the last day of the previous month
+
+    # Return the previous day as DD/MM/YYYY
+    return f"{day:02}/{month:02}/{year}"
+
 
 def usage():
     "Print a usage message to the user"
